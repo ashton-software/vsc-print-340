@@ -12,7 +12,6 @@ Tables:
 Detail: column names
 ```
 
-
 ## Database diagram (mssql)
 
-TODO
+TODO:
