@@ -101,6 +101,9 @@ export async function processFencedBlocks(defaultConfig: any, raw: string, gener
           case "LATEX":
             updatedTokens.push({ block: true, type: "html", raw: token.raw, text: katex.renderToString(token.text, getConfig(LANG)) });
             break;
+          case "DB":
+            updatedTokens.push({ block: true, type: "html", raw: token.raw, text: katex.renderToString(token.text, getConfig(LANG)) });
+            break;
           //#region config management
           case "USE":
             if (namedConfigs[token.text]) {
