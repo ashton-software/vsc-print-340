@@ -1,14 +1,14 @@
-import {DatabaseType, dbDiagram} from "./dbDiagram";
+import {DatabaseType, dbDiagram, dbDiagramRequest} from "./dbDiagramRequest";
 
 export class dbRenderer {
     // https://mermaid.js.org/syntax/entityRelationshipDiagram.html
-    renderDbDiagram(dbDiagram: dbDiagram): string {
-        return "NOT IMPLEMENTED";
+    renderDbDiagram(dbDiagram: dbDiagramRequest): dbDiagram {
+        // TODO: NOT IMPLEMENTED
+        return new dbDiagram();
     }
 
-
-    parseDbDiagram(text: string): dbDiagram {
-        let db = new dbDiagram();
+    parseDbDiagram(text: string): dbDiagramRequest {
+        let db = new dbDiagramRequest();
         let lines = text.split('\n');
         lines.forEach(line => {
             if (line.includes("DatabaseType")) {
@@ -26,4 +26,6 @@ export class dbRenderer {
 
         return db;
     }
+
+
 }
