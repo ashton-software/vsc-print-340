@@ -15,6 +15,7 @@ import * as os from "os";
 import * as path from 'path';
 import * as fs from "fs";
 import { resolveRootDoc } from './includes';
+import {dbRenderer} from "./dbRenderer";
 
 const HIGHLIGHTJS_LANGS = hljs.listLanguages().map(s => s.toUpperCase());
 const KROKI_SUPPORT = [
@@ -102,7 +103,11 @@ export async function processFencedBlocks(defaultConfig: any, raw: string, gener
             updatedTokens.push({ block: true, type: "html", raw: token.raw, text: katex.renderToString(token.text, getConfig(LANG)) });
             break;
           case "DB":
-            updatedTokens.push({ block: true, type: "html", raw: token.raw, text: katex.renderToString(createDbDiagram(token.text), getConfig("MERMAID")) });
+            const renderer = new dbRenderer(); // TODO: this should be static class maybe
+            const diagram = renderer.parseDbDiagram(token.text);
+            const dbInfo = renderer.getDbInfo(diagram);
+            const textToDraw = renderer.drawFromDb(dbInfo);
+            updatedTokens.push({ block: true, type: "html", raw: token.raw, text: katex.renderToString(textToDraw, getConfig("MERMAID")) });
             break;
           //#region config management
           case "USE":

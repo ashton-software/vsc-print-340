@@ -1,8 +1,37 @@
 import {DatabaseType, dbDiagram, dbDiagramRequest} from "./dbDiagramRequest";
-
+// TODO: Import mssql
+// TODO: Import mysql
 export class dbRenderer {
     // https://mermaid.js.org/syntax/entityRelationshipDiagram.html
-    renderDbDiagram(dbDiagram: dbDiagramRequest): dbDiagram {
+    drawFromDb(dbDiagram: dbDiagram): string{
+        // TODO: "NOT IMPLEMENTED";
+        return `erDiagram
+        p[Person] {
+            string firstName
+            string lastName
+        }
+        a["Customer Account"] {
+            string email
+        }
+        p ||--o| a : has
+        `;
+    }
+
+    getDbInfo(dbRequest: dbDiagramRequest): dbDiagram {
+
+        switch (dbRequest.DatabaseType){
+            case DatabaseType.MSSQL:
+                // TODO: use mssql driver here
+                console.log("bla bla bla");
+                break;
+
+            case DatabaseType.PostgreSQL:
+                // TODO: use pgsql driver here
+                console.log("ble ble ble");
+                break;
+        }
+
+
         // TODO: NOT IMPLEMENTED
         return new dbDiagram();
     }
