@@ -148,9 +148,21 @@ function getPosition(s: string, t: string, i: number) {
 // https://mermaid.js.org/syntax/entityRelationshipDiagram.html
 function createDbDiagram(text : string): string {
   let output = "erDiagram\n";
-  output += "";
 
-  // TODO: Implement
+  let lines = text.split('\n');
+  lines.forEach(line => {
+    if (line.includes("DatabaseType")) {
+      output += "  " + line.split(":")[1].trim() + "\n";
+    } else if(line.includes("ConnectionString")) {
+      output += "  " + line.split(":")[1].trim() + "\n";
+    } else if(line.includes("Schema")) {
+      output += "  " + line.split(":")[1].trim() + "\n";
+    } else if(line.includes("Tables")) {
+      output += "  " + line.split(":")[1].trim() + "\n";
+    } else if(line.includes("Detail")) {
+      output += "  " + line.split(":")[1].trim() + "\n";
+    }
+  })
 
-  return "";
+  return output;
 }
