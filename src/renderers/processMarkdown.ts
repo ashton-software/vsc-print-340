@@ -102,7 +102,7 @@ export async function processFencedBlocks(defaultConfig: any, raw: string, gener
             updatedTokens.push({ block: true, type: "html", raw: token.raw, text: katex.renderToString(token.text, getConfig(LANG)) });
             break;
           case "DB":
-            updatedTokens.push({ block: true, type: "html", raw: token.raw, text: katex.renderToString(createDbDiagram(token.text), getConfig(LANG)) });
+            updatedTokens.push({ block: true, type: "html", raw: token.raw, text: katex.renderToString(createDbDiagram(token.text), getConfig("MERMAID")) });
             break;
           //#region config management
           case "USE":
@@ -145,7 +145,12 @@ function getPosition(s: string, t: string, i: number) {
   return s.split(t, i).join(t).length;
 }
 
+// https://mermaid.js.org/syntax/entityRelationshipDiagram.html
 function createDbDiagram(text : string): string {
+  let output = "erDiagram\n";
+  output += "";
+
   // TODO: Implement
+
   return "";
 }
