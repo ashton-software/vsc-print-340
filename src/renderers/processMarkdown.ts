@@ -1,7 +1,7 @@
 import { ResourceProxy } from './resource-proxy';
 import { Token, Tokens, marked } from 'marked';
 import * as yaml from "yaml";
-import { merge } from "lodash";
+import { forEach, merge } from "lodash";
 import * as katex from "katex";
 import crypto from "crypto";
 import { deflate } from "pako";
@@ -143,26 +143,4 @@ export async function processFencedBlocks(defaultConfig: any, raw: string, gener
 
 function getPosition(s: string, t: string, i: number) {
   return s.split(t, i).join(t).length;
-}
-
-// https://mermaid.js.org/syntax/entityRelationshipDiagram.html
-function createDbDiagram(text : string): string {
-  let output = "erDiagram\n";
-
-  let lines = text.split('\n');
-  lines.forEach(line => {
-    if (line.includes("DatabaseType")) {
-      output += "  " + line.split(":")[1].trim() + "\n";
-    } else if(line.includes("ConnectionString")) {
-      output += "  " + line.split(":")[1].trim() + "\n";
-    } else if(line.includes("Schema")) {
-      output += "  " + line.split(":")[1].trim() + "\n";
-    } else if(line.includes("Tables")) {
-      output += "  " + line.split(":")[1].trim() + "\n";
-    } else if(line.includes("Detail")) {
-      output += "  " + line.split(":")[1].trim() + "\n";
-    }
-  })
-
-  return output;
 }
