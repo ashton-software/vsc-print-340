@@ -1,6 +1,6 @@
 # What version of node is recommended?
 
-To run this in development environment, node version 16 is recommended. 
+To run this in development environment, node version 18 is recommended. 
 
 # How to do remote debugging
 
